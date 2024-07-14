@@ -1,18 +1,9 @@
 pipeline {
-    agent none
+    agent {
+        docker { image 'node:20.15.1-alpine3.20' }
+    }
     stages {
-        stage('Back-end') {
-            agent {
-                docker { image 'maven:3.9.8-eclipse-temurin-21-alpine' }
-            }
-            steps {
-                sh 'mvn --version'
-            }
-        }
-        stage('Front-end') {
-            agent {
-                docker { image 'node:20.15.1-alpine3.20' }
-            }
+        stage('Test') {
             steps {
                 sh 'node --version'
             }
